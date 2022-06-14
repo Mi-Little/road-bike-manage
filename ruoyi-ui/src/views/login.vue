@@ -1,7 +1,13 @@
 <template>
   <div class="login">
+       <video 
+       class="video" 
+       preload="auto" loop playsinline autoplay 
+       src="../assets/video/202206131901.mp4" 
+       tabindex="-1" muted="muted">
+       </video>
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form">
-      <h3 class="title">若依后台管理系统</h3>
+      <h3 class="title">Road Bike Management</h3>
       <el-form-item prop="username">
         <el-input
           v-model="loginForm.username"
@@ -37,7 +43,7 @@
           <img :src="codeUrl" @click="getCode" class="login-code-img"/>
         </div>
       </el-form-item>
-      <el-checkbox v-model="loginForm.rememberMe" style="margin:0px 0px 25px 0px;">记住密码</el-checkbox>
+      <el-checkbox v-model="loginForm.rememberMe" style="margin:0px 0px 25px 0px; color:white">RememberMe</el-checkbox>
       <el-form-item style="width:100%;">
         <el-button
           :loading="loading"
@@ -46,11 +52,11 @@
           style="width:100%;"
           @click.native.prevent="handleLogin"
         >
-          <span v-if="!loading">登 录</span>
+          <span v-if="!loading">Login</span>
           <span v-else>登 录 中...</span>
         </el-button>
         <div style="float: right;" v-if="register">
-          <router-link class="link-type" :to="'/register'">立即注册</router-link>
+          <router-link class="link-type" :to="'/register'">register</router-link>
         </div>
       </el-form-item>
     </el-form>
@@ -161,9 +167,29 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100%;
-  background-image: url("../assets/images/login-background.jpg");
+  // background-image: url("../assets/images/login-background.jpg");
   background-size: cover;
+
+  position: relative;
+  height: 100vh;
+  background-color: #C1CFF7;
+  /*进行视频裁剪*/
+  overflow: hidden;
 }
+.login .video {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    /*保证视频内容始终居中*/
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    /*保证视频充满屏幕*/
+    object-fit: cover;
+    min-height: 800px;
+}
+
+
 .title {
   margin: 0px auto 30px auto;
   text-align: center;
